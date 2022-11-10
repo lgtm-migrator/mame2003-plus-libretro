@@ -6,6 +6,8 @@
 
 #include "driver.h"
 #include "ost_samples.h"
+#include <stdio.h>
+#include <string.h>
 
 
 /* ost configuration */
@@ -37,6 +39,7 @@ static void ost_stop_samples(void);
 static void ost_mix_samples(void);
 static void ost_set_last_played(int sa_left, int sa_right);
 static bool ost_last_played(int sa_left, int sa_right);
+static bool approved_game_title(void);
 
 
 const char *const contra_sample_set_names[] =
@@ -550,6 +553,8 @@ bool ost_support_enabled(int ost)
 
 void install_ost_support(struct InternalMachineDriver *machine, int ost)
 {
+  if( !approved_game_title() ) return;
+
   /* set */
   ost_support = ost;
 
@@ -611,6 +616,36 @@ void install_ost_support(struct InternalMachineDriver *machine, int ost)
       fadingMusic = false;
       break;
   }
+}
+
+
+static bool approved_game_title(void)
+{
+  int i = 0;
+  char *game = Machine->gamedrv->name;
+  char *gamelist[] =
+  {
+    "contra", "contrab", "contraj", "contrajb",
+    "ddragon", "ddragonu", "ddragonw",
+    "ffight", "ffightu", "ffightj", "ffightj1", "ffightae",
+    "ikari", "ikarijp", "ikarijpb",
+    "mk", "mkr4", "mkprot9", "mkla1", "mkla2", "mkla3", "mkla4",
+    "moonwalk", "moonwlka", "moonwlkb",
+    "nbajam", "nbajamr2",
+    "outrun", "outruna", "outrunb",
+    "robocop", "robocopw", "robocopj", "robocopu", "robocpu0",
+    "sf1", "sf1us", "sf1jp", "sf1p",
+    "sf2", "sf2eb", "sf2ua", "sf2ub", "sf2ud", "sf2ue", "sf2uf", "sf2ui", "sf2uk", "sf2j", "sf2ja", "sf2jc",
+    0
+  };
+
+  while(gamelist[i]) {
+    if(strcmp(gamelist[i], game) == 0)
+      return true;
+    i++;
+  }
+
+  return false;
 }
 
 
