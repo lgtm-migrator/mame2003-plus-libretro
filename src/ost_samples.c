@@ -632,7 +632,7 @@ static bool approved_game_title(void)
     "mk", "mkr4", "mkprot9", "mkla1", "mkla2", "mkla3", "mkla4",
     "moonwalk", "moonwlka", "moonwlkb",
     "nbajam", "nbajamr2",
-    "outrun*", "outruna", "outrunb",
+    "outruny", "outruna", "outrunb",
     "robocop", "robocopw", "robocopj", "robocopu", "robocpu0",
     "sf1", "sf1us", "sf1jp", "sf1p",
     "sf2", "sf2eb", "sf2ua", "sf2ub", "sf2ud", "sf2ue", "sf2uf", "sf2ui", "sf2uk", "sf2j", "sf2ja", "sf2jc",
